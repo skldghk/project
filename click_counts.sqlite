@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS ClickCounts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    grade TEXT,
+    class TEXT,
+    count INTEGER
+);
