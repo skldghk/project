@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 경쟁</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>클릭 경쟁</h1>
+    <!-- 왼쪽 상단에 학년과 반을 표시할 영역 -->
+    <div id="selected-info"></div>
+    <div id="class-selection">
+        <h2>학년과 반을 선택하세요:</h2>
+        <div id="grade-select-container">
+            <select id="grade-select" onchange="loadClasses()">
+                <option value="">학년 선택</option>
+                <option value="1학년">1학년</option>
+                <option value="2학년">2학년</option>
+                <option value="3학년">3학년</option>
+                <option value="4학년">4학년</option>
+                <option value="5학년">5학년</option>
+                <option value="6학년">6학년</option>
+            </select>
+        </div>
+        <div id="class-container" class="class-container"></div>
+    </div>
+    <div id="click-container" style="display: none;">
+        <div id="click-counter">
+            <button onclick="incrementCount()">클릭!</button>
+            <p>클릭 수: <span id="count">0</span></p>
+        </div>
+    </div>
+    <div id="score-bar" style="display: none;">
+        <div id="top-score">1등 반 점수: <span id="top-score-value">0</span></div>
+        <div id="selected-score">선택한 반: <span id="selected-class-name"></span> - 점수: <span id="selected-score-value">0</span></div>
+        <div id="score-bar-container">
+            <div id="score-bar-fill"></div>
+            <div id="first-class-info"></div>
+            <div id="selected-class-info"></div>
+        </div>
+    </div>
+    <div id="score-details" style="display: none;">
+        <h2>모든 반 점수</h2>
+        <div id="all-scores"></div>
+    </div>
+    <div id="top-score-info">
+        <span id="top-grade-class-score"></span>
+    </div>
+    <div id="selected-score-info">
+        <span id="selected-class-score"></span>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
