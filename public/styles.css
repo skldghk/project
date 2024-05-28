@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #FFFFFF; /* 배경 색상을 하얀색으로 변경합니다. */
-    color: #000000; /* 글씨 색상을 검은색으로 변경합니다. */
+    background-color: #FFFFFF; /* 검은색 배경 색상 */
+    color: #000; /* 흰색 글자 색상 */
     margin: 0;
     padding: 0;
 }
@@ -13,13 +13,13 @@ h1 {
 
 #selected-info {
     position: absolute;
-    top: 40px; /* 위에서 40px 떨어진 위치 */
-    left: 20px; /* 왼쪽에서 20px 떨어진 위치 */
-    font-size: 24px; /* 폰트 크기를 24px로 설정 */
+    top: 40px;
+    left: 20px;
+    font-size: 24px;
 }
 
 #class-selection {
-    position: relative; /* 상대 위치 지정 */
+    position: relative;
 }
 
 #click-container {
@@ -27,14 +27,14 @@ h1 {
 }
 
 #click-counter {
-    background-color: #FFFFFF;
+    background-color: #444444; /* 어두운 배경 색상 */
     border: 1px solid #DDDDDD;
     border-radius: 5px;
     padding: 20px;
     margin: 10px auto;
     width: 200px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: #000000;
+    color: #FFFFFF; /* 흰색 글자 색상 */
     position: absolute;
     left: 50%;
     top: 50%;
@@ -42,8 +42,8 @@ h1 {
 }
 
 #click-counter button {
-    font-size: 18px; /* 버튼의 글꼴 크기를 늘립니다. */
-    padding: 10px 20px; /* 버튼의 내부 여백을 조정합니다. */
+    font-size: 18px;
+    padding: 10px 20px;
 }
 
 #count {
@@ -51,17 +51,17 @@ h1 {
 }
 
 select {
-    color: #000000;
-    background-color: #F0F0F0;
+    color: #000; /* 흰색 글자 색상 */
+    background-color: #FFFFFF; /* 어두운 배경 색상 */
 }
 
 #class-container {
-    color: #000000; /* 흰색으로 텍스트 색상 설정 */
-    font-size: 20px; /* 폰트 크기 설정 */
-    margin-top: 20px; /* 상단 여백 설정 */
-    display: flex; /* 반이 가로로 정렬되도록 설정 */
-    justify-content: center; /* 반이 가운데로 정렬되도록 설정 */
-    flex-wrap: wrap; /* 필요시 줄 바꿈 설정 */
+    color: #000; /* 흰색 글자 색상 */
+    font-size: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 #class-container div {
@@ -78,64 +78,41 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: #333333; /* 어두운 배경 색상 */
     padding: 10px;
     box-sizing: border-box;
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 57%;
     z-index: 999;
+    border-top: 1px solid #555555; /* 어두운 테두리 색상 */
+    color: #FFFFFF; /* 흰색 글자 색상 */
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    transition: all 0.5s ease;
 }
 
-#score-bar-container {
-    width: calc(100% - 40px); /* 전체 너비에서 여백을 제외한 크기로 설정 */
-    height: 60px; /* 높이를 증가시킵니다. */
-    background-color: #ccc;
-    position: relative;
-    border-radius: 5px;
-    display: flex; /* flex로 설정 */
-    justify-content: space-between; /* 양쪽 정렬 */
-    align-items: center; /* 수직 가운데 정렬 */
-    padding: 0 20px; /* 내부 여백 설정 */
-    margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
-}
-
-#top-score-info,
-#selected-score-info {
-    color: #000000;
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
-    width: calc(100% - 40px); /* 전체 너비에서 여백을 제외한 크기로 설정 */
-    margin: 20px auto; /* 가운데 정렬을 위해 위아래 여백을 20px로 설정 */
-    text-align: center; /* 텍스트를 가운데 정렬 */
-}
-
-/* 수정된 부분 */
-#top-score-info {
-    position: absolute;
-    left: 20px; /* 가운데 정렬을 위해 왼쪽 여백을 20px로 설정 */
-    transform: translateX(-50%); /* 가운데 정렬을 위해 왼쪽으로 50%만큼 이동 */
-}
-
-/* 수정된 부분 */
-#selected-score-info {
-    position: absolute;
-    right: 20px; /* 가운데 정렬을 위해 오른쪽 여백을 20px로 설정 */
-    transform: translateX(50%); /* 가운데 정렬을 위해 오른쪽으로 50%만큼 이동 */
+#score-bar.active {
+    background-color: #444444; /* 어두운 배경 색상 */
+    color: #FFFFFF; /* 흰색 글자 색상 */
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 #score-details {
-    width: calc(100% - 40px); /* 전체 너비에서 여백을 제외한 크기로 설정 */
-    margin: 20px auto; /* 가운데 정렬을 위해 위아래 여백을 20px로 설정 */
-    text-align: center; /* 텍스트를 가운데 정렬 */
-}
-
-#all-scores {
-    display: none; /* 초기에는 숨겨둠 */
+    width: calc(100% - 40px);
+    margin: 20px auto;
+    text-align: center;
+    display: none;
 }
 
 #score-details.show {
-    display: block; /* 클릭 시 보이도록 함 */
+    display: block;
+}
+
+#score-details.show #selected-info {
+    display: none; /* 선택한 학년과 반 정보 숨기기 */
 }
