@@ -4,11 +4,11 @@ const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const http = require('http');
-const WebSocket = require('ws'); // WebSocket 모듈 로드
+const WebSocket = require('ws');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors()); // CORS 미들웨어 추가
+app.use(cors());
 
 // 정적 파일 제공 설정
 app.use(express.static(path.join(__dirname, 'public')));
@@ -79,6 +79,19 @@ app.post('/increment', (req, res) => {
                     res.json(row);
                 }
             });
+        }
+    });
+});
+
+// 모든 반 점수를 점수 순으로 조회
+app.get('/all-scores', (req, res) => {
+    db.all("SELECT * FROM counts ORDER BY count DESC", (err, rows) => {
+        if (err) {
+            console.error('Error retrieving all scores:', err.message);
+            res.status(500).send(err.message);
+        } else {
+            console.log('Retrieved all scores:', rows);
+            res.json(rows);
         }
     });
 });
