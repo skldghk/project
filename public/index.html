@@ -31,24 +31,13 @@
             <p>클릭 수: <span id="count">0</span></p>
         </div>
     </div>
-    <div id="score-bar" style="display: none;">
-        <div id="top-score">1등 반 점수: <span id="top-score-value">0</span></div>
-        <div id="selected-score">선택한 반: <span id="selected-class-name"></span> - 점수: <span id="selected-score-value">0</span></div>
-        <div id="score-bar-container">
-            <div id="score-bar-fill"></div>
-            <div id="first-class-info"></div>
-            <div id="selected-class-info"></div>
-        </div>
+    <div id="score-bar" style="display: none;" onclick="toggleScoreBar()">
+        <div id="top-score-info">1등 반: <span id="top-score"></span> - 점수: <span id="top-score-value"></span></div>
+        <div id="selected-score-info">선택한 반: <span id="selected-class-name"></span> - 점수: <span id="selected-score-value"></span></div>
     </div>
     <div id="score-details" style="display: none;">
         <h2>모든 반 점수</h2>
         <div id="all-scores"></div>
-    </div>
-    <div id="top-score-info">
-        <span id="top-grade-class-score"></span>
-    </div>
-    <div id="selected-score-info">
-        <span id="selected-class-score"></span>
     </div>
     <script src="scripts.js"></script>
 </body>
