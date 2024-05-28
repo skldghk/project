@@ -25,6 +25,7 @@ async function fetchCounts() {
         if (row.count > topScore) {
             topScore = row.count;
             document.getElementById('top-score-value').innerText = topScore;
+            document.getElementById('top-score').innerText = `${row.grade}-${row.class}`;
         }
     }
 }
@@ -55,7 +56,7 @@ function selectClass(classNum) {
     document.getElementById('selected-class-name').innerText = `${selectedGrade} ${selectedClass}`;
 
     document.getElementById('click-container').style.display = 'block';
-    document.getElementById('score-bar').style.display = 'none'; // score-bar를 숨기도록 변경
+    document.getElementById('score-bar').style.display = 'flex';
     document.getElementById('class-selection').style.display = 'none';
 }
 
@@ -74,32 +75,51 @@ async function incrementCount() {
     if (counts[selectedGrade][selectedClass] > topScore) {
         topScore = counts[selectedGrade][selectedClass];
         document.getElementById('top-score-value').innerText = topScore;
+        document.getElementById('top-score').innerText = `${selectedGrade}-${selectedClass}`;
     }
 }
 
-function toggleScoreDetails() {
-    const scoreDetails = document.getElementById('score-details');
-    const allScores = document.getElementById('all-scores');
-    const scoreBar = document.getElementById('score-bar');
+function showAllScores() {
+    const allScoresDiv = document.getElementById('all-scores');
+    allScoresDiv.innerHTML = '';
 
-    if (scoreDetails.style.display === 'none') {
-        // 모든 반의 점수를 표시합니다.
-        allScores.innerHTML = '';
-        for (const grade in counts) {
-            for (const className in counts[grade]) {
-                const scoreDiv = document.createElement('div');
-                scoreDiv.innerText = `${grade} ${className}: ${counts[grade][className]}점`;
-                allScores.appendChild(scoreDiv);
-            }
+    const allScoresArray = [];
+    for (const grade in counts) {
+        for (const className in counts[grade]) {
+            allScoresArray.push({ grade, className, count: counts[grade][className] });
         }
-        scoreDetails.style.display = 'block';
-        scoreBar.style.display = 'none'; // score-bar를 숨기도록 변경
+    }
+
+    allScoresArray.sort((a, b) => b.count - a.count); // 점수 순으로 정렬
+
+    allScoresArray.forEach(score => {
+        const scoreDiv = document.createElement('div');
+        scoreDiv.innerText = `${score.grade} ${score.className} - ${score.count}점`;
+        allScoresDiv.appendChild(scoreDiv);
+    });
+
+    document.getElementById('score-details').classList.add('show');
+    document.getElementById('score-bar').classList.add('active');
+    document.getElementById('selected-info').style.display = 'none'; // 선택한 학년과 반 숨기기
+    document.getElementById('click-container').style.display = 'none';
+    document.getElementById('selected-score-info').style.display = 'none';
+}
+
+function hideAllScores() {
+    document.getElementById('score-details').classList.remove('show');
+    document.getElementById('score-bar').classList.remove('active');
+    document.getElementById('selected-info').style.display = 'block'; // 선택한 학년과 반 보이기
+    document.getElementById('click-container').style.display = 'block';
+    document.getElementById('selected-score-info').style.display = 'block';
+}
+
+function toggleScoreBar() {
+    const isActive = document.getElementById('score-bar').classList.contains('active');
+    if (isActive) {
+        hideAllScores();
     } else {
-        scoreDetails.style.display = 'none';
-        scoreBar.style.display = 'flex'; // score-bar를 보이도록 설정
+        showAllScores();
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchCounts();
-});
+window.onload = fetchCounts;
